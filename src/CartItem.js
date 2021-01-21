@@ -46,4 +46,4 @@ const styles = {
     }
 }
 
-export default CartItem
+export default CartItem;
