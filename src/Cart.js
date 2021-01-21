@@ -11,19 +11,22 @@ class Cart extends React.Component{
                 title : 'Watch',
                 price : 1000,
                 qty : 1,
-                img : ''
+                img : '',
+                id : 1
             },
             {
                 title : 'Phone',
                 price : 9000,
                 qty : 1,
-                img : ''
+                img : '',
+                id : 2
             },
             {
                 title : 'Laptop',
                 price : 50000,
                 qty : 1,
-                img : ''
+                img : '',
+                id : 3
             }
         ]
         }
@@ -42,7 +45,7 @@ class Cart extends React.Component{
     handleDecreaseQty = (product) =>{
         const {products} = this.state;
         const index = products.indexOf(product);
-        {if (products.qty === 0) {
+        if (products[index].qty === 0) {
             return;
         }
         products[index].qty -= 1;
@@ -50,6 +53,14 @@ class Cart extends React.Component{
             products : products
         })
     }
+
+    handleDeleteProduct = (id) =>{
+        const {products} = this.state;
+
+        const items = products.filter((item) => item.id !== id);
+        this.setState({
+            products : items
+        })
     }
 
     render(){
@@ -57,7 +68,13 @@ class Cart extends React.Component{
         return(
             <div className='cart'>
                 {products.map((product) =>{
-                   return <CartItem product={product} key={product.id} increaseQty={this.handleIncreaseQty} decreaseQty={this.handleDecreaseQty} />
+                   return <CartItem 
+                                product={product} 
+                                key={product.id} 
+                                increaseQty={this.handleIncreaseQty} 
+                                decreaseQty={this.handleDecreaseQty} 
+                                deleteItem={this.handleDeleteProduct}
+                                />
                 })}
             </div>
         )
