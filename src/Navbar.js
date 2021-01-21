@@ -1,9 +1,7 @@
 import React from 'react';
 import Cart from './Cart';
 
-class Navbar extends React.Component{
-
-    render(){
+const Navbar = (props) => {
         return(
             <div style={styles.nav}>
                 <div style={styles.cartIconContainer}>
@@ -13,7 +11,6 @@ class Navbar extends React.Component{
             </div>
         )
     }
-}
 
 const styles = {
     cartIcon : {
