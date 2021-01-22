@@ -13,21 +13,21 @@ class App extends React.Component {
             title : 'Watch',
             price : 1000,
             qty : 1,
-            img : '',
+            img : 'https://www.aponzone.com/image/cache/data/watch/curren-8321-quartz-01-watch-aponzone-600x540.jpg',
             id : 1
         },
         {
             title : 'Phone',
             price : 9000,
             qty : 1,
-            img : '',
+            img : 'https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
             id : 2
         },
         {
             title : 'Laptop',
             price : 50000,
             qty : 1,
-            img : '',
+            img : 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80',
             id : 3
         }
     ]
@@ -77,6 +77,18 @@ handleDeleteProduct = (id) =>{
     return count;
   }
 
+  getTotalAmt =() =>{
+    const {products} = this.state;
+
+    let amount = 0;
+
+    products.map((product)=>{
+      amount = amount + product.qty * product.price
+    });
+
+    return amount;
+  }
+
     render () {
       const {products} = this.state;
       return (
@@ -88,7 +100,9 @@ handleDeleteProduct = (id) =>{
              increaseQty={this.handleIncreaseQty} 
              decreaseQty={this.handleDecreaseQty} 
              deleteItem={this.handleDeleteProduct}
+             amount={this.getTotalAmt}
           />
+          <h3>Total Amount = {this.getTotalAmt()}</h3>
         </div>
       );
     }

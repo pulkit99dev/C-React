@@ -3,11 +3,11 @@ import Cart from './Cart';
 
 const CartItem =(props) => {
         const {title, price, qty} = props.product;
-        const { product, increaseQty, decreaseQty, deleteItem} = props;
+        const { product, increaseQty, decreaseQty, deleteItem, amount} = props;
         return(
             <div className='cart-item'>
                 <div className='left-block'>
-                    <img style= {styles.image} />
+                    <img style= {styles.image} src={product.img}/>
                 </div>
                 <div className='right-block'>
                     <div style={ {fontSize : 25} }>{title}</div>
