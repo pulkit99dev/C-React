@@ -14,28 +14,52 @@ class App extends React.Component {
     }
 }
 
+// componentDidMount() {
+//   firebase
+//     .firestore()
+//     .collection('products')
+//     .get()
+//     .then((snapshot) => {
+//         console.log(snapshot);
+//         snapshot.docs.map((doc) =>{
+//           console.log(doc.data());
+
+//           doc.data['id'] = doc.id;
+//           return doc.data();
+//         });
+//         const products = snapshot.docs.map((doc) => {
+//           return doc.data();
+//         })
+//         this.setState({
+//           products,
+//           loading: false
+//         })
+//     }
+//     )
+// }
+
 componentDidMount() {
   firebase
     .firestore()
     .collection('products')
-    .get()
-    .then((snapshot) => {
-        console.log(snapshot);
+    .onSnapshot((snapshot) => {
+      console.log(snapshot);
         snapshot.docs.map((doc) =>{
           console.log(doc.data());
 
-          // data['id'] = doc.id;
-          // return data;
+          
         });
         const products = snapshot.docs.map((doc) => {
-          return doc.data();
+          const data = doc.data();
+
+          data['id'] = doc.id;
+          return data;
         })
         this.setState({
           products,
           loading: false
         })
-    }
-    )
+    })
 }
 
 handleIncreaseQty = (product) =>{
